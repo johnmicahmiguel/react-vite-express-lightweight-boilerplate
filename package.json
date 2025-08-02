@@ -1,0 +1,54 @@
+{
+    "name": "saas-express-vite-react",
+    "private": true,
+    "type": "module",
+    "version": "0.1.0",
+    "engines": {
+        "node": ">=20.19.0"
+    },
+    "scripts": {
+        "dev": "NODE_ENV=development tsx server/index.ts",
+        "build": "vite build && esbuild server/index.ts --platform=node --packages=external --bundle --format=esm --outdir=dist",
+        "start": "NODE_ENV=production node dist/index.js",
+        "check": "tsc"
+    },
+    "dependencies": {
+        "express": "^4.18.2",
+        "express-session": "1.18.2",
+        "cookie-parser": "1.4.7",
+        "dotenv": "17.2.1",
+        "bcryptjs": "3.0.2",
+        "mongoose": "8.17.0",
+        "react": "19.1.1",
+        "react-dom": "19.1.1",
+        "react-router-dom": "7.7.1",
+        "@tanstack/react-query": "5.84.1",
+        "react-hook-form": "7.62.0",
+        "@hookform/resolvers": "5.2.1",
+        "zod": "4.0.14",
+        "clsx": "2.1.1",
+        "tailwind-merge": "3.3.1",
+        "class-variance-authority": "0.7.1",
+        "@radix-ui/react-accordion": "1.2.11",
+        "@radix-ui/react-dialog": "1.1.14",
+        "lucide-react": "0.536.0"
+    },
+    "devDependencies": {
+        "vite": "7.0.6",
+        "@vitejs/plugin-react": "4.7.0",
+        "esbuild": "0.25.8",
+        "tsx": "4.20.3",
+        "@types/express": "4.17.21",
+        "@types/node": "22.12.0",
+        "@types/react": "^19.0.0",
+        "@types/react-dom": "^19.0.0",
+        "typescript": "5.7.2",
+        "nodemon": "3.1.10",
+        "rimraf": "6.0.1",
+        "cross-env": "10.0.0",
+        "postcss": "8.5.6",
+        "autoprefixer": "10.4.21",
+        "tailwindcss": "4.1.11",
+        "@tailwindcss/postcss": "^4.0.0"
+    }
+}
