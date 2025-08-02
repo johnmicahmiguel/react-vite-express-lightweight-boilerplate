@@ -1,16 +1,15 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import { Landing } from './marketing/pages'
 import AppRouter from './app/App'
 
 function App() {
   return (
     <Router>
       <Routes>
-        {/* Marketing/Public Routes */}
-        <Route path="/" element={<Landing />} />
-        
-        {/* App Routes */}
+        {/* App Routes - Marketing routes are handled by SSG */}
         <Route path="/app/*" element={<AppRouter />} />
+        
+        {/* Fallback for any unhandled routes */}
+        <Route path="*" element={<div>Page not found</div>} />
       </Routes>
     </Router>
   )

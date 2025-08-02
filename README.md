@@ -125,23 +125,7 @@ DOCS_USERNAME=your-username
 DOCS_PASSWORD=your-password
 ```
 
-## API Endpoints
 
-### Current Endpoints
-
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET | `/api/health` | Health check |
-| POST | `/api/v1/auth/login` | User login |
-| POST | `/api/v1/auth/register` | User registration |
-| POST | `/api/v1/auth/logout` | User logout |
-| GET | `/api/v1/users/profile` | Get user profile |
-| PUT | `/api/v1/users/profile` | Update user profile |
-
-### API Versioning
-All API endpoints support versioning:
-- **Versioned**: `/api/v1/users/profile`
-- **Backward Compatible**: `/api/users/profile` (defaults to v1)
 
 ## Routing Strategy
 
@@ -250,14 +234,7 @@ This boilerplate is ready for deployment on:
 - **Railway** (full-stack with database)
 - **Heroku** (traditional hosting)
 
-## Next Steps
 
-1. **Database Integration**: Add your preferred database (PostgreSQL, MongoDB, etc.)
-2. **Authentication**: Implement real authentication system
-3. **Email Service**: Configure email sending (SendGrid, etc.)
-4. **File Upload**: Add file storage (AWS S3, Cloudinary)
-5. **Testing**: Add unit and integration tests
-6. **CI/CD**: Set up automated deployment pipeline
 
 ---
 

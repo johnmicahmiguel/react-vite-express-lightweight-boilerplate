@@ -9,12 +9,15 @@ function Landing() {
               <h1 className="text-2xl font-bold text-gray-900">BusinessConnect</h1>
             </div>
             <div className="flex items-center space-x-4">
-              <button className="text-gray-700 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">
-                Sign In
-              </button>
-              <button className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm font-medium">
+              <a href="/about" className="text-gray-700 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">
+                About
+              </a>
+              <a href="/pricing" className="text-gray-700 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">
+                Pricing
+              </a>
+              <a href="/app" className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm font-medium">
                 Get Started
-              </button>
+              </a>
             </div>
           </div>
         </div>
@@ -31,12 +34,23 @@ function Landing() {
             Post your needs, find the right talent, and grow your business.
           </p>
           <div className="mt-10 flex justify-center space-x-6">
-            <button className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-md text-lg font-medium">
+            <a href="/app" className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-md text-lg font-medium">
               I'm a Business Owner
-            </button>
-            <button className="bg-green-600 hover:bg-green-700 text-white px-8 py-3 rounded-md text-lg font-medium">
+            </a>
+            <a href="/app" className="bg-green-600 hover:bg-green-700 text-white px-8 py-3 rounded-md text-lg font-medium">
               I'm a Contractor
-            </button>
+            </a>
+          </div>
+          
+          {/* Secondary CTAs */}
+          <div className="mt-8 flex justify-center space-x-4">
+            <a href="/about" className="text-blue-600 hover:text-blue-800 font-medium">
+              Learn more about our platform →
+            </a>
+            <span className="text-gray-400">|</span>
+            <a href="/pricing" className="text-blue-600 hover:text-blue-800 font-medium">
+              View pricing plans →
+            </a>
           </div>
         </div>
 
@@ -123,7 +137,33 @@ function Landing() {
       {/* Footer */}
       <footer className="bg-white border-t border-gray-200 mt-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <div className="text-center text-gray-600">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-4">BusinessConnect</h3>
+              <p className="text-gray-600">Connecting business owners with skilled contractors.</p>
+            </div>
+            <div>
+              <h4 className="text-sm font-semibold text-gray-900 mb-4">Company</h4>
+              <ul className="space-y-2">
+                <li><a href="/about" className="text-gray-600 hover:text-gray-900">About</a></li>
+                <li><a href="/pricing" className="text-gray-600 hover:text-gray-900">Pricing</a></li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="text-sm font-semibold text-gray-900 mb-4">Platform</h4>
+              <ul className="space-y-2">
+                <li><a href="/app" className="text-gray-600 hover:text-gray-900">Dashboard</a></li>
+                <li><a href="/api/documentation" className="text-gray-600 hover:text-gray-900">API Docs</a></li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="text-sm font-semibold text-gray-900 mb-4">Get Started</h4>
+              <a href="/app" className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm font-medium inline-block">
+                Join Now
+              </a>
+            </div>
+          </div>
+          <div className="border-t border-gray-200 mt-8 pt-8 text-center text-gray-600">
             <p>&copy; 2025 BusinessConnect. All rights reserved.</p>
           </div>
         </div>
