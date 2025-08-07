@@ -3,6 +3,7 @@ import path from "path";
 import express, { type Express } from "express";
 import { type Server } from "http";
 import { createServer as createViteServer, type ViteDevServer } from "vite";
+// Import SSR utilities only for production build
 import { renderMarketingPage, isMarketingRoute } from "./utils/ssr";
 
 export const log = (msg: string) => {
@@ -30,19 +31,8 @@ export async function setupVite(app: Express, server: Server): Promise<ViteDevSe
     }
     
     try {
-      // Check if this is a marketing route that should be SSG
-      if (isMarketingRoute(url)) {
-        const staticHtml = await renderMarketingPage(url);
-        if (staticHtml) {
-          res.status(200).set({ 
-            "Content-Type": "text/html",
-            "Cache-Control": "public, max-age=3600" // Cache for 1 hour
-          }).end(staticHtml);
-          return;
-        }
-      }
-      
-      // For app routes (/app/*) or fallback, serve the SPA
+      // In development mode, serve everything as CSR (no SSG/SSR)
+      // This makes development faster and simpler
       const indexTemplate = path.resolve("index.html");
       let template = await fs.promises.readFile(indexTemplate, "utf-8");
       
@@ -78,7 +68,7 @@ export function serveStatic(app: Express) {
   }
 
   // Handle root path specifically before static middleware
-  app.get('/', async (req, res) => {
+  app.get('/', async (_req, res) => {
     console.log(`[DEBUG] Serving root path: "/"`);
     const landingPath = path.join(distPath, 'landing.html');
     console.log(`[DEBUG] Looking for landing file: ${landingPath}`);
@@ -124,32 +114,6 @@ export function serveStatic(app: Express) {
     index: false // Disable automatic index.html serving for root
   }));
   
-  // Add specific handler for subdirectory index.html files (for About and Pricing)
-  app.get('/about/', async (req, res) => {
-    const aboutPath = path.join(distPath, 'about', 'index.html');
-    if (fs.existsSync(aboutPath)) {
-      const html = await fs.promises.readFile(aboutPath, 'utf-8');
-      res.status(200).set({ 
-        "Content-Type": "text/html",
-        "Cache-Control": "public, max-age=3600"
-      }).send(html);
-      return;
-    }
-    res.status(404).send('Page not found');
-  });
-
-  app.get('/pricing/', async (req, res) => {
-    const pricingPath = path.join(distPath, 'pricing', 'index.html');
-    if (fs.existsSync(pricingPath)) {
-      const html = await fs.promises.readFile(pricingPath, 'utf-8');
-      res.status(200).set({ 
-        "Content-Type": "text/html",
-        "Cache-Control": "public, max-age=3600"
-      }).send(html);
-      return;
-    }
-    res.status(404).send('Page not found');
-  });
   
   app.get('/*', async (req, res) => {
     console.log(`[DEBUG] Request path: "${req.path}"`);

@@ -14,11 +14,31 @@ export async function getBuiltTailwindCSS(): Promise<string> {
     if (process.env.NODE_ENV === 'production') {
       // Production: read from dist folder
       const distPath = path.resolve('dist');
-      const files = await fs.readdir(distPath);
-      const cssFile = files.find(file => file.endsWith('.css'));
       
-      if (cssFile) {
+      // Check both dist root and assets folder for CSS files
+      const files = await fs.readdir(distPath);
+      let cssFile = files.find(file => file.endsWith('.css'));
+      
+      if (!cssFile) {
+        // Check assets folder
+        const assetsPath = path.join(distPath, 'assets');
+        if (await fs.stat(assetsPath).then(() => true).catch(() => false)) {
+          const assetFiles = await fs.readdir(assetsPath);
+          cssFile = assetFiles.find(file => file.endsWith('.css'));
+          if (cssFile) {
+            cssContent = await fs.readFile(path.join(assetsPath, cssFile), 'utf-8');
+            console.log(`✅ Successfully loaded CSS from assets: ${cssFile}`);
+          }
+        }
+      } else {
         cssContent = await fs.readFile(path.join(distPath, cssFile), 'utf-8');
+        console.log(`✅ Successfully loaded CSS from dist: ${cssFile}`);
+      }
+      
+      // If no CSS found, use fallback
+      if (!cssContent) {
+        console.warn('No CSS file found in dist or assets folder, using fallback');
+        cssContent = generateMinimalTailwindCSS();
       }
     } else {
       // Development: generate minimal CSS with just the classes we need

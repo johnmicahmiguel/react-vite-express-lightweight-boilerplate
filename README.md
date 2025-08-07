@@ -4,7 +4,7 @@ A modern, full-stack boilerplate combining **React + Vite** for the frontend and
 
 ## Features
 
-- **Clear Architecture**: Separated domains for marketing pages (SSG) and authenticated app (CSR)
+- **Clear Architecture**: Separated domains for marketing page (SSG) and authenticated app (CSR)
 - **Auto-Generated API Docs**: Swagger/OpenAPI documentation with authentication protection
 - **API Versioning**: Built-in API versioning (`/api/v1/`)
 - **Modern Stack**: React 18 + Vite + Express + TypeScript
@@ -26,7 +26,7 @@ A modern, full-stack boilerplate combining **React + Vite** for the frontend and
 │   │
 │   ├── marketing/                # Marketing/Public pages (SSG)
 │   │   ├── components/           # Marketing components
-│   │   ├── pages/                # Public pages (Landing, About, etc.)
+│   │   ├── pages/                # Public pages (Landing page)
 │   │   ├── assets/               # Marketing assets
 │   │   ├── styles/               # Marketing styles
 │   │   └── types/                # Marketing types
@@ -131,8 +131,6 @@ DOCS_PASSWORD=your-password
 
 ### Marketing Routes (SSG)
 - `/` - Landing page
-- `/about` - About page
-- `/pricing` - Pricing page
 - All marketing pages are server-side generated for SEO
 
 ### App Routes (CSR)
