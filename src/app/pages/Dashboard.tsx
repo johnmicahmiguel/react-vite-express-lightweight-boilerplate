@@ -1,32 +1,72 @@
 import { Link } from 'react-router-dom';
+import { Disclosure, Transition } from '@headlessui/react';
 
 export default function Dashboard() {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
-      <header className="bg-white shadow-sm border-b">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center py-4">
-            <div className="flex items-center space-x-8">
-              <div className="flex items-center space-x-3">
-                <div className="w-8 h-8 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
-                  <span className="text-white font-bold">⚡</span>
+      <Disclosure as="header" className="bg-white shadow-sm border-b">
+        {({ open }) => (
+          <>
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="flex justify-between items-center py-4">
+                <div className="flex items-center space-x-8">
+                  <div className="flex items-center space-x-3">
+                    <div className="w-8 h-8 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
+                      <span className="text-white font-bold">⚡</span>
+                    </div>
+                    <h1 className="text-xl font-bold text-gray-900">React Vite Express</h1>
+                  </div>
+                  <nav className="hidden md:flex space-x-6">
+                    <Link to="/app" className="text-blue-600 font-semibold border-b-2 border-blue-600 pb-2 transition-colors">Dashboard</Link>
+                  </nav>
                 </div>
-                <h1 className="text-xl font-bold text-gray-900">React Vite Express</h1>
+                <div className="hidden md:flex items-center space-x-4">
+                  <a href="/api/documentation" className="text-gray-600 hover:text-blue-600 text-sm transition-colors">API Docs</a>
+                  <a href="/" className="text-gray-600 hover:text-blue-600 text-sm transition-colors">← Landing</a>
+                </div>
+                <div className="md:hidden">
+                  <Disclosure.Button className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500">
+                    <span className="sr-only">Open main menu</span>
+                    {open ? (
+                      <svg className="block h-6 w-6" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                      </svg>
+                    ) : (
+                      <svg className="block h-6 w-6" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                      </svg>
+                    )}
+                  </Disclosure.Button>
+                </div>
               </div>
-              <nav className="flex space-x-6">
-                <Link to="/app" className="text-blue-600 font-semibold border-b-2 border-blue-600 pb-2">Dashboard</Link>
-                <Link to="/app/profile" className="text-gray-600 hover:text-blue-600 pb-2">Profile</Link>
-                <Link to="/app/settings" className="text-gray-600 hover:text-blue-600 pb-2">Settings</Link>
-              </nav>
             </div>
-            <div className="flex items-center space-x-4">
-              <a href="/api/documentation" className="text-gray-600 hover:text-blue-600 text-sm">API Docs</a>
-              <a href="/" className="text-gray-600 hover:text-blue-600 text-sm">← Landing</a>
-            </div>
-          </div>
-        </div>
-      </header>
+            <Transition
+              show={open}
+              enter="transition duration-200 ease-out"
+              enterFrom="transform scale-95 opacity-0"
+              enterTo="transform scale-100 opacity-100"
+              leave="transition duration-75 ease-in"
+              leaveFrom="transform scale-100 opacity-100"
+              leaveTo="transform scale-95 opacity-0"
+            >
+              <Disclosure.Panel className="md:hidden">
+                <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white border-t">
+                  <Link to="/app" className="block px-3 py-2 rounded-md text-sm font-medium text-blue-600 bg-blue-50">
+                    Dashboard
+                  </Link>
+                  <a href="/api/documentation" className="block px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50">
+                    API Docs
+                  </a>
+                  <a href="/" className="block px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50">
+                    ← Landing
+                  </a>
+                </div>
+              </Disclosure.Panel>
+            </Transition>
+          </>
+        )}
+      </Disclosure>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Welcome Section */}
@@ -202,15 +242,12 @@ export default function Dashboard() {
             <div className="space-y-3">
               <h3 className="font-semibold text-gray-800">📚 Explore More</h3>
               <div className="space-y-2">
-                <a href="/api/documentation" className="block text-sm text-blue-600 hover:text-blue-800 p-2 bg-blue-50 rounded">
+                <a href="/api/documentation" className="block text-sm text-blue-600 hover:text-blue-800 p-2 bg-blue-50 rounded transition-colors">
                   📖 View API Documentation
                 </a>
-                <Link to="/app/profile" className="block text-sm text-purple-600 hover:text-purple-800 p-2 bg-purple-50 rounded">
-                  👤 Check Profile Page
-                </Link>
-                <Link to="/app/settings" className="block text-sm text-green-600 hover:text-green-800 p-2 bg-green-50 rounded">
-                  ⚙️ Visit Settings Page
-                </Link>
+                <a href="/" className="block text-sm text-purple-600 hover:text-purple-800 p-2 bg-purple-50 rounded transition-colors">
+                  🏠 Back to Landing Page
+                </a>
               </div>
             </div>
           </div>

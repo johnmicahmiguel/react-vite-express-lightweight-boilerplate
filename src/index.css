@@ -1,1 +1,5 @@
 @import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Improve native form controls and scrollbars in dark mode */
+:root { color-scheme: light dark; }

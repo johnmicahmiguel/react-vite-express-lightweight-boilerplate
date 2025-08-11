@@ -7,7 +7,8 @@ A modern, full-stack boilerplate combining **React + Vite** for the frontend and
 - **Clear Architecture**: Separated domains for marketing page (SSG) and authenticated app (CSR)
 - **Auto-Generated API Docs**: Swagger/OpenAPI documentation with authentication protection
 - **API Versioning**: Built-in API versioning (`/api/v1/`)
-- **Modern Stack**: React 18 + Vite + Express + TypeScript
+- **Modern Stack**: React 19 + Vite + Express + TypeScript
+- **UI Components**: Headless UI for accessible, unstyled components
 - **Responsive Design**: TailwindCSS for styling
 - **Developer Experience**: Hot reload, TypeScript, organized folder structure
 
@@ -18,7 +19,7 @@ A modern, full-stack boilerplate combining **React + Vite** for the frontend and
 │   ├── app/                      # Authenticated SPA pages (CSR)
 │   │   ├── components/           # App-specific components
 │   │   ├── hooks/                # App-specific hooks
-│   │   ├── pages/                # Protected pages (Dashboard, Profile, Settings)
+│   │   ├── pages/                # Protected pages (Dashboard)
 │   │   ├── store/                # State management
 │   │   ├── types/                # App domain types
 │   │   ├── utils/                # App utilities
@@ -135,8 +136,6 @@ DOCS_PASSWORD=your-password
 
 ### App Routes (CSR)
 - `/app` - Dashboard (requires authentication)
-- `/app/profile` - User profile
-- `/app/settings` - App settings
 - All app routes are client-side rendered
 
 ## Development
@@ -207,7 +206,7 @@ The boilerplate includes placeholder authentication:
 
 ## Built With
 
-- **Frontend**: React 18, Vite, TypeScript, TailwindCSS
+- **Frontend**: React 19, Vite, TypeScript, TailwindCSS, Headless UI
 - **Backend**: Express, TypeScript, Node.js
 - **Documentation**: Swagger/OpenAPI, swagger-jsdoc, swagger-ui-express
 - **Development**: Hot reload, TypeScript compilation, ESLint
